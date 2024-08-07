@@ -1,95 +1,45 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import { Suspense } from "react";
 
-export default function Home() {
+import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import Stack from "@mui/material/Stack";
+
+import { Authors } from "@/components/Authors";
+import { Books } from "@/components/Books";
+import { Search } from "@/components/Search";
+import { Toolbar } from "@/components/Toolbar";
+import { MainPageProps } from "@/types";
+
+export default function Home({ searchParams }: MainPageProps) {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    <Container
+      sx={{
+        width: "100%",
+        zIndex: 100,
+        padding: 3,
+      }}>
+      <Stack sx={{ background: "rgb(255,255,255)", padding: 4 }}>
+        <Box pb={3}>
+          <Search />
+        </Box>
+        <Box pb={3}>
+          <Toolbar />
+        </Box>
+        <Grid container spacing={3}>
+          <Grid item xs={4}>
+            <Suspense fallback={<CircularProgress />}>
+              <Authors />
+            </Suspense>
+          </Grid>
+          <Grid item xs={8}>
+            <Suspense fallback={<CircularProgress />}>
+              <Books {...searchParams} />
+            </Suspense>
+          </Grid>
+        </Grid>
+      </Stack>
+    </Container>
   );
 }

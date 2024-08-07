@@ -3,22 +3,35 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3001",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.13.0",
+    "@emotion/styled": "^11.13.0",
+    "@fontsource/roboto": "^5.0.13",
+    "@hookform/resolvers": "^3.9.0",
+    "@mui/icons-material": "^5.16.6",
+    "@mui/material": "^5.16.6",
+    "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
-    "next": "14.2.5"
+    "react-hook-form": "^7.52.1",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.5"
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-config-next": "14.2.5",
+    "eslint-config-prettier": "^9.1.0",
+    "typescript": "^5.4.5",
+    "prettier": "^3.3.3"
   }
 }
